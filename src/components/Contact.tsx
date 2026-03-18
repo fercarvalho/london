@@ -41,11 +41,11 @@ export const Contact = () => {
     <section id="contato" className="py-32 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Contact Info Bento */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="lg:col-span-2 bento-card bg-brand-blue/5 dark:bg-brand-navy/40 flex flex-col justify-between"
+          className="lg:col-span-2 bento-card bg-gradient-to-br from-brand-blue/10 to-brand-blue/5 dark:from-brand-navy/40 dark:to-brand-navy/20 border-brand-blue/20 dark:border-brand-navy/30 flex flex-col justify-between"
         >
           <div>
             <h2 className="text-4xl font-black text-text-primary mb-6">VAMOS <br /><span className="text-brand-blue">CONVERSAR?</span></h2>
@@ -93,12 +93,12 @@ export const Contact = () => {
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-current/5">
+          <div className="mt-12 pt-8 border-t border-current/10">
              <a
                href={whatsappUrl}
                target="_blank"
                rel="noopener noreferrer"
-               className="w-full border border-emerald-500/30 hover:bg-emerald-500/10 text-emerald-400 font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all"
+               className="whatsapp-btn w-full border-2 border-emerald-500/40 font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] hover:shadow-lg"
              >
                 <MessageSquare className="w-5 h-5" />
                 Falar pelo WhatsApp
