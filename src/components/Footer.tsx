@@ -1,9 +1,11 @@
 import { Shield, Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react';
 import { useState } from 'react';
 import { MapModal } from './MapModal';
+import { ClientAreaModal } from './ClientAreaModal';
 
 export const Footer = () => {
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
+  const [isClientAreaOpen, setIsClientAreaOpen] = useState(false);
   const phoneNumber = '5543999943000';
   const whatsappMessage = encodeURIComponent('Olá! London Seguros, vim pelo site e gostaria de mais informações!');
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
@@ -65,7 +67,7 @@ export const Footer = () => {
           <ul className="space-y-4 text-text-primary/70 text-sm">
             <li><a href="#servicos" className="hover:text-brand-blue transition-colors">Nossos Seguros</a></li>
             <li><a href="#sobre" className="hover:text-brand-blue transition-colors">Quem Somos</a></li>
-            <li><a href="#" className="hover:text-brand-blue transition-colors">Portal do Cliente</a></li>
+            <li><button onClick={() => setIsClientAreaOpen(true)} className="hover:text-brand-blue transition-colors">Portal do Cliente</button></li>
             <li><a href="#" className="hover:text-brand-blue transition-colors">Sinistros</a></li>
           </ul>
         </div>
@@ -97,6 +99,7 @@ export const Footer = () => {
       </div>
 
       <MapModal isOpen={isMapModalOpen} onClose={() => setIsMapModalOpen(false)} />
+      <ClientAreaModal isOpen={isClientAreaOpen} onClose={() => setIsClientAreaOpen(false)} />
     </footer>
   );
 };
