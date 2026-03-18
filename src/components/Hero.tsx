@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import heroBg from '../assets/hero-bg.png';
 
 export const Hero = () => {
   return (
@@ -14,7 +13,7 @@ export const Hero = () => {
           transition={{ duration: 1 }}
           className="inline-block px-4 py-1 rounded-full border border-brand-blue/30 bg-brand-blue/10 text-brand-blue text-xs font-bold mb-10 tracking-widest uppercase"
         >
-          Desde 1989 protegendo o Brasil
+          Garantindo suas conquistas desde 1989
         </motion.div>
         
         <motion.h1 
@@ -66,17 +65,12 @@ export const Hero = () => {
       >
         <div className="absolute inset-0 overflow-hidden rounded-t-[3rem]">
           <img
-            src={heroBg}
-            alt="Abstract Protection"
-            className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1400&q=80"
+            alt="Proteção e segurança — London Seguros"
+            className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-           <div className="px-6 py-2 glass rounded-full text-sm font-medium border-white/10">
-             London Experience
-           </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10 pointer-events-none" />
       </motion.div>
     </section>
   );

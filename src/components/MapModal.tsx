@@ -61,7 +61,7 @@ export const MapModal = ({ isOpen, onClose }: MapModalProps) => {
             {/* Map Content */}
             <div className="w-full h-[calc(100%-80px)]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.8507469688345!2d-51.176619!3d-23.3120859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ebc07b0c2b7c7f%3A0x5c5e5c5e5c5e5c5e!2sAv.%20Maring%C3%A1%2C%202300%20-%20Jardim%20Petr%C3%B3polis%2C%20Londrina%20-%20PR%2C%2086060-000!5e0!3m2!1spt-BR!2sbr!4v1234567890!5m2!1spt-BR!2sbr"
+                src="https://maps.google.com/maps?q=London+Seguros,+Av.+Maringá+2300,+Londrina+PR&t=m&z=16&ie=UTF8&iwloc=B&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

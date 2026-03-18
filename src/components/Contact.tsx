@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Send, MessageSquare, Phone, Mail, MapPin } from 'lucide-react';
-import { useState } from 'react';
+import { Send, MessageSquare, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { MapModal } from './MapModal';
 
 export const Contact = () => {
@@ -11,6 +11,25 @@ export const Contact = () => {
     assunto: '',
     mensagem: ''
   });
+
+  const titleToOption: Record<string, string> = {
+    'Seguro Auto': 'Seguro Automotivo',
+    'Seguro de Vida': 'Seguro de Vida',
+    'Seguro Residencial': 'Seguro Residencial',
+    'Seguro Empresarial': 'Seguro Empresarial',
+    'Seguro Viagem': 'Seguro Viagem',
+    'Seguro Saúde': 'Seguro Saúde',
+  };
+
+  useEffect(() => {
+    const handle = (e: Event) => {
+      const { assunto } = (e as CustomEvent).detail;
+      const option = titleToOption[assunto] ?? assunto;
+      setFormData(prev => ({ ...prev, assunto: option, mensagem: 'Gostaria de realizar uma cotação' }));
+    };
+    window.addEventListener('prefill-contact', handle);
+    return () => window.removeEventListener('prefill-contact', handle);
+  }, []);
 
   const phoneNumber = '5543999943000';
   const whatsappMessage = encodeURIComponent('Olá! London Seguros, vim pelo site e gostaria de mais informações!');
@@ -90,9 +109,20 @@ export const Contact = () => {
                   <p className="text-text-primary font-bold text-sm">Av. Maringá, 2300 | 86060-000 | Londrina-PR</p>
                 </div>
               </button>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 glass rounded-full flex items-center justify-center shrink-0">
+                  <Clock className="w-5 h-5 text-brand-blue" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-text-muted uppercase tracking-widest mb-1">Horário de Atendimento</p>
+                  <p className="text-text-primary font-bold text-sm">Seg. a Sex.: 8h–12h e 13:30–18h</p>
+                  <p className="text-text-secondary text-sm">Plantão Sáb.: 9h–12h</p>
+                </div>
+              </div>
             </div>
           </div>
-          
+
           <div className="mt-12 pt-8 border-t border-current/10">
              <a
                href={whatsappUrl}
