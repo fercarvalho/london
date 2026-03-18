@@ -1,47 +1,63 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @theme {
   --color-brand-navy: #0a1e36;
   --color-brand-blue: #3b82f6;
+  --color-brand-violet: #8b5cf6;
   --color-brand-orange: #f97316;
-  
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  
+
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  
-  --radius-bento: 1.5rem;
+
+  --radius-bento: 1.25rem;
 }
 
+/* ─── LIGHT MODE ─────────────────────────────────────── */
 :root {
   color-scheme: light;
-  --background: #f8fafc;
-  --foreground: #020617;
-  --text-primary: #020617;
-  --text-secondary: #475569; /* slate-600 */
-  --text-muted: #64748b;    /* slate-500 */
-  --border-color: rgba(0, 0, 0, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.8);
+  --background: #fafafa;
+  --foreground: #09090b;
+  --surface: #ffffff;
+  --surface-raised: #f4f4f5;
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #a1a1aa;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.14);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glow-blue: rgba(59, 130, 246, 0.12);
+  --glow-violet: rgba(139, 92, 246, 0.1);
 }
 
+/* ─── DARK MODE ──────────────────────────────────────── */
 .dark {
   color-scheme: dark;
-  --background: #020617;
-  --foreground: #f8fafc;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8; /* slate-400 */
-  --text-muted: #64748b;    /* slate-500 */
-  --border-color: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.05);
+  --background: #08080c;
+  --foreground: #fafafa;
+  --surface: #0f0f14;
+  --surface-raised: #18181f;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glow-blue: rgba(59, 130, 246, 0.18);
+  --glow-violet: rgba(139, 92, 246, 0.14);
 }
 
+/* ─── BASE ───────────────────────────────────────────── */
 html {
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -52,40 +68,101 @@ body {
 }
 
 @layer base {
-  * {
-    border-color: var(--border-color);
-  }
+  * { border-color: var(--border-color); }
 }
 
+/* ─── BACKGROUND GRID ────────────────────────────────── */
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@utility bg-dot {
+  background-image: radial-gradient(circle, var(--border-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── GLASS ──────────────────────────────────────────── */
 @utility glass {
   background-color: var(--glass-bg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid var(--border-color);
 }
 
+/* ─── BENTO CARD ─────────────────────────────────────── */
 @utility bento-card {
-  @apply glass rounded-(--radius-bento) p-6 transition-all duration-300;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-bento);
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
   &:hover {
-    background-color: color-mix(in srgb, var(--glass-bg), white 5%);
-    border-color: color-mix(in srgb, var(--border-color), white 10%);
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 1px var(--border-color), 0 8px 32px rgba(0,0,0,0.08);
   }
 }
 
+.dark .bento-card:hover {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 8px 40px rgba(0,0,0,0.4);
+}
+
+/* ─── GRADIENT TEXT ──────────────────────────────────── */
+@utility gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── GRADIENT BORDER CARD ───────────────────────────── */
+@utility gradient-border {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius-bento);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(139,92,246,0.2), transparent 60%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* ─── GLOW ───────────────────────────────────────────── */
+@utility glow-blue {
+  box-shadow: 0 0 40px var(--glow-blue), 0 0 80px var(--glow-blue);
+}
+
+@utility glow-violet {
+  box-shadow: 0 0 40px var(--glow-violet), 0 0 80px var(--glow-violet);
+}
+
+/* ─── WHATSAPP BTN ───────────────────────────────────── */
 @utility whatsapp-btn {
   background-color: rgb(34 197 94);
   color: white;
 
-  &:hover {
-    background-color: rgb(22 163 74);
-  }
+  &:hover { background-color: rgb(22 163 74); }
 
   .dark & {
     background-color: transparent;
     color: rgb(52 211 153);
+    border-color: rgb(52 211 153 / 0.3);
   }
 
-  .dark &:hover {
-    background-color: rgb(52 211 153 / 0.2);
-  }
+  .dark &:hover { background-color: rgb(52 211 153 / 0.15); }
 }
 
+/* ─── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }

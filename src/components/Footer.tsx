@@ -9,7 +9,7 @@ export const Footer = () => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
 
   return (
-    <footer className="py-20 px-6 border-t border-current/10 bg-foreground/[0.03]">
+    <footer className="py-20 px-6 border-t border-current/10" style={{ background: 'var(--surface)' }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
           <div className="flex items-center gap-2 mb-6">

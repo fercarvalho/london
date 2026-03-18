@@ -147,87 +147,93 @@ export const Services = () => {
 
   return (
     <section id="servicos" className="py-32 px-6 relative overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-brand-blue/10 blur-[150px] -z-10" />
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] rounded-full -z-10 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)' }} />
 
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block px-3 py-1 rounded-full border border-current/10 bg-foreground/[0.04] text-text-muted text-[11px] font-semibold mb-5 tracking-widest uppercase"
+          >
+            Portfólio
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-black mb-6 tracking-tighter"
+            className="text-4xl md:text-6xl font-black mb-4 tracking-tighter text-text-primary"
           >
-            NOSSOS SEGUROS
+            NOSSOS <span className="gradient-text">SEGUROS</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-text-secondary text-base md:text-lg max-w-xl mx-auto"
           >
-            Estruturas modulares de proteção desenhadas para as necessidades do mundo moderno.
+            Proteção sob medida para cada fase da sua vida e do seu negócio.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className={`bento-card group relative overflow-hidden cursor-pointer ${service.span} ${service.bg}`}
+              className={`bento-card group relative overflow-hidden cursor-pointer ${service.span}`}
               onClick={() => setSelected(service.detail)}
             >
+              <div className={`absolute inset-0 ${service.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-[var(--radius-bento)]`} />
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                    <service.icon className={`w-7 h-7 ${service.color}`} />
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${service.bg}`}>
+                    <service.icon className={`w-5 h-5 ${service.color}`} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-text-primary">{service.title}</h3>
-                  <p className="text-text-secondary leading-relaxed text-sm md:text-base">{service.desc}</p>
+                  <h3 className="text-lg font-bold mb-2 text-text-primary">{service.title}</h3>
+                  <p className="text-text-secondary leading-relaxed text-sm">{service.desc}</p>
                 </div>
 
-                <div className="mt-8 flex items-center justify-between">
-                  <span className="text-xs font-bold tracking-widest text-text-muted uppercase">Saber mais</span>
-                  <button className="w-10 h-10 rounded-full glass flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-                    →
-                  </button>
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="text-[11px] font-semibold tracking-widest text-text-muted uppercase">Saber mais</span>
+                  <div className="w-7 h-7 rounded-full border border-current/10 flex items-center justify-center text-text-muted group-hover:bg-brand-blue group-hover:text-white group-hover:border-transparent transition-all text-sm">→</div>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.div>
           ))}
 
           {/* Card Outros */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: services.length * 0.05 }}
-            className="bento-card group relative overflow-hidden md:col-span-1 bg-brand-blue/5 cursor-pointer"
+            className="bento-card group relative overflow-hidden md:col-span-1 cursor-pointer"
             onClick={() => setAllOpen(true)}
           >
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-[var(--radius-bento)]"
+              style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05))' }} />
             <div className="relative z-10 flex flex-col h-full justify-between">
               <div>
-                <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                  <LayoutGrid className="w-7 h-7 text-brand-blue" />
+                <div className="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+                  <LayoutGrid className="w-5 h-5 text-brand-blue" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-text-primary">Outros</h3>
+                <h3 className="text-lg font-bold mb-2 text-text-primary">Outros</h3>
                 <p className="text-text-secondary leading-relaxed text-sm md:text-base">
                   Condomínios, Transportes, Fiança Locatícia, Estagiários e muito mais.
                 </p>
               </div>
-              <div className="mt-8 flex items-center justify-between">
-                <span className="text-xs font-bold tracking-widest text-text-muted uppercase">Ver todos</span>
-                <button className="w-10 h-10 rounded-full glass flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-                  →
-                </button>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="text-[11px] font-semibold tracking-widest text-text-muted uppercase">Ver todos</span>
+                <div className="w-7 h-7 rounded-full border border-current/10 flex items-center justify-center text-text-muted group-hover:bg-brand-blue group-hover:text-white group-hover:border-transparent transition-all text-sm">→</div>
               </div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
           </motion.div>
         </div>
       </div>

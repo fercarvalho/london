@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { Users, Building2, Car } from 'lucide-react';
+import { CountUp } from './CountUp';
 
 export const About = () => {
   return (
-    <section id="sobre" className="py-32 px-6 bg-foreground/[0.03] relative overflow-hidden">
+    <section id="sobre" className="py-32 px-6 relative overflow-hidden" style={{ background: 'var(--surface)' }}>
        {/* Decorative lines */}
        <div className="absolute inset-0 opacity-[0.03] dark:opacity-5 pointer-events-none">
           <div className="absolute top-0 left-1/4 w-px h-full bg-foreground" />
@@ -65,20 +66,23 @@ export const About = () => {
           </p>
 
           <div className="grid grid-cols-3 gap-4">
-            <div className="glass rounded-2xl p-5 text-center">
-              <Users className="w-6 h-6 text-brand-blue mx-auto mb-2" />
-              <p className="text-2xl font-black text-text-primary">9.000+</p>
-              <p className="text-text-muted text-xs mt-1">Clientes</p>
+            <div className="glass rounded-2xl p-5 text-center group relative overflow-hidden transition-all duration-300">
+              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+              <Users className="w-6 h-6 text-brand-blue mx-auto mb-2 relative z-10" />
+              <p className="text-2xl font-black text-text-primary relative z-10"><CountUp value={9000} suffix="+" format /></p>
+              <p className="text-text-muted text-xs mt-1 relative z-10">Clientes</p>
             </div>
-            <div className="glass rounded-2xl p-5 text-center">
-              <Car className="w-6 h-6 text-brand-blue mx-auto mb-2" />
-              <p className="text-2xl font-black text-text-primary">6.000+</p>
-              <p className="text-text-muted text-xs mt-1">Veículos Segurados</p>
+            <div className="glass rounded-2xl p-5 text-center group relative overflow-hidden transition-all duration-300">
+              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+              <Car className="w-6 h-6 text-brand-blue mx-auto mb-2 relative z-10" />
+              <p className="text-2xl font-black text-text-primary relative z-10"><CountUp value={6000} suffix="+" format /></p>
+              <p className="text-text-muted text-xs mt-1 relative z-10">Veículos Segurados</p>
             </div>
-            <div className="glass rounded-2xl p-5 text-center">
-              <Building2 className="w-6 h-6 text-brand-blue mx-auto mb-2" />
-              <p className="text-2xl font-black text-text-primary">2001</p>
-              <p className="text-text-muted text-xs mt-1">Sede Própria</p>
+            <div className="glass rounded-2xl p-5 text-center group relative overflow-hidden transition-all duration-300">
+              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+              <Building2 className="w-6 h-6 text-brand-blue mx-auto mb-2 relative z-10" />
+              <p className="text-2xl font-black text-text-primary relative z-10"><CountUp value={2001} duration={1500} /></p>
+              <p className="text-text-muted text-xs mt-1 relative z-10">Sede Própria</p>
             </div>
           </div>
         </motion.div>

@@ -22,7 +22,7 @@ const insurers: Insurer[] = [
 
 export const Partners = () => {
   return (
-    <section id="seguradoras" className="py-32 px-6 bg-foreground/[0.03] relative overflow-hidden">
+    <section id="seguradoras" className="py-32 px-6 relative overflow-hidden" style={{ background: 'var(--surface)' }}>
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-5 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-px h-full bg-foreground" />
         <div className="absolute top-0 left-2/4 w-px h-full bg-foreground" />
@@ -66,9 +66,13 @@ export const Partners = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
-              className="glass rounded-2xl p-6 flex items-center justify-center aspect-video hover:scale-105 transition-transform duration-300"
+              className="glass rounded-2xl p-6 flex items-center justify-center aspect-video transition-all duration-300 relative overflow-hidden group hover:scale-105"
             >
-              <div className="flex flex-col items-center gap-2">
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                style={{ backgroundColor: insurer.bg === 'transparent' ? 'rgba(59,130,246,0.06)' : `${insurer.bg}18` }}
+              />
+              <div className="flex flex-col items-center gap-2 relative z-10">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
                   style={{

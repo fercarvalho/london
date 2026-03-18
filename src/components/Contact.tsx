@@ -43,7 +43,7 @@ export const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Montar a mensagem personalizada
@@ -64,9 +64,10 @@ export const Contact = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="lg:col-span-2 bento-card bg-gradient-to-br from-brand-blue/10 to-brand-blue/5 dark:from-brand-navy/40 dark:to-brand-navy/20 border-brand-blue/20 dark:border-brand-navy/30 flex flex-col justify-between"
+          className="lg:col-span-2 bento-card bg-gradient-to-br from-brand-blue/10 to-brand-blue/5 dark:from-brand-navy/40 dark:to-brand-navy/20 border-brand-blue/20 dark:border-brand-navy/30 flex flex-col justify-between group relative overflow-hidden"
         >
-          <div>
+          <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          <div className="relative z-10">
             <h2 className="text-4xl font-black text-text-primary mb-6">VAMOS <br /><span className="text-brand-blue">CONVERSAR?</span></h2>
             <p className="text-text-secondary mb-10">Solicite uma cotação personalizada ou tire suas dúvidas com nossos especialistas.</p>
             
@@ -110,9 +111,9 @@ export const Contact = () => {
                 </div>
               </button>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 glass rounded-full flex items-center justify-center shrink-0">
-                  <Clock className="w-5 h-5 text-brand-blue" />
+              <div className="flex items-start gap-4 group cursor-default">
+                <div className="w-12 h-12 glass rounded-full flex items-center justify-center shrink-0 group-hover:bg-brand-blue transition-all">
+                  <Clock className="w-5 h-5 text-brand-blue group-hover:text-white transition-colors" />
                 </div>
                 <div>
                   <p className="text-xs font-bold text-text-muted uppercase tracking-widest mb-1">Horário de Atendimento</p>
@@ -123,7 +124,7 @@ export const Contact = () => {
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-current/10">
+          <div className="mt-12 pt-8 border-t border-current/10 relative z-10">
              <a
                href={whatsappUrl}
                target="_blank"
@@ -142,9 +143,10 @@ export const Contact = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="lg:col-span-3 bento-card"
+          className="lg:col-span-3 bento-card group relative overflow-hidden"
         >
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-[10px] font-bold text-text-muted uppercase tracking-widest ml-4">Nome completo</label>
