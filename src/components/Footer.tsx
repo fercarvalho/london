@@ -150,7 +150,7 @@ export const Footer = () => {
                 A Viver de PJ é um ecossistema completo de gestão e educação para Empreendedores.
               </p>
               <p className="text-xs text-text-primary/30 mb-3">
-                Autor: Fernando Carvalho Gomes dos Santos — 39063242816
+                Autor: 41.748.511 Fernando Carvalho Gomes dos Santos
               </p>
               <button
                 onClick={() => setIsViverOpen(true)}
