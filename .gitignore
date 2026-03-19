@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Deploy guide
-DEPLOY_GITHUB_PAGES.md
+DEPLOY_VERCEL.md
